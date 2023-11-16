@@ -2,19 +2,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProductDto_API.Models.Product
 {
-  public class ProductDto
+  public class KindOfProductDto
   {
-    public int Id { get; set; }
+    public int KindOfProductId { get; set; }
 
     [Required]
     [MaxLength(30)]
     public string Name { get; set; }
 
-    public string Detail { get; set; }
-
     [Required]
-    public double Price { get; set; }
-
-    public string ImageUrl { get; set; }
+    public string Detail { get; set; }
   }
 }

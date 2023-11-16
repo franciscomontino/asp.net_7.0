@@ -266,3 +266,5 @@
 /home/pancho/Documents/training/asp.net/app/bin/Debug/net7.0/runtimes/win/lib/netstandard1.3/System.Data.SqlClient.dll
 /home/pancho/Documents/training/asp.net/app/bin/Debug/net7.0/Npgsql.dll
 /home/pancho/Documents/training/asp.net/app/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/pancho/Documents/training/asp.net/app/bin/Debug/net7.0/AutoMapper.dll
+/home/pancho/Documents/training/asp.net/app/bin/Debug/net7.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

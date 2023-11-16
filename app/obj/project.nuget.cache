@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Fg3+bWLQ7BLfqjPP5kVdhbkzA1aFOLzJLLglpTzTHb7C97m7IorBLsCpFTI4SZZHbXJ3KMum1fHuFmSHda/xwQ==",
+  "dgSpecHash": "zyndD87Fy4ervDR4f49Nyk1sTDF8AOJ1YFZygsA9mIww0MiEB+id3/ilcPgH5XToDE2cUY+grntFLIt2HZKefw==",
   "success": true,
   "projectFilePath": "/home/pancho/Documents/training/asp.net/app/app.csproj",
   "expectedPackageFiles": [
+    "/home/pancho/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/home/pancho/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/home/pancho/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/home/pancho/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
     "/home/pancho/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",

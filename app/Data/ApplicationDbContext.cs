@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Product_API.Models;
 
@@ -21,18 +20,19 @@ namespace Product_API.Data
       options.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
     }
 
+    //DBSet Table KindOfProduct
+    public DbSet<KindOfProduct> KindOfProducts { get; set; }
+    //DBSet Table Product
     public DbSet<Product> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      modelBuilder.Entity<Product>().HasData(
-        new Product()
+      modelBuilder.Entity<KindOfProduct>().HasData(
+        new KindOfProduct()
         {
-          Id = 1,
-          Name = "Lenovo Legion",
-          Detail = "Laptop Lenovo",
-          Price = 3000,
-          ImageUrl = "",
+          KindOfProductId = 1,
+          Name = "Laptop",
+          Detail = "Laptops",
           Create = DateTime.Now,
           Update = DateTime.Now,
         }

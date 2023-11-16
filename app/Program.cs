@@ -1,5 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+using Product_API;
 using Product_API.Data;
+using Product_API.Repository;
+using Product_API.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,11 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+// Add classes implementing the repository pattern
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IKindOfProductRepository, KindOfProductRepository>();
 
 var app = builder.Build();
 
