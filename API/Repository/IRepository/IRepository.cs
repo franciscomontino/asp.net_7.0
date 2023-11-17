@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore.Update;
+using Product_API.Models.Specifications;
 
 namespace Product_API.Repository.IRepository
 {
@@ -8,6 +8,7 @@ namespace Product_API.Repository.IRepository
     Task Create(T entity);
     Task <T> Get(Expression<Func<T, bool>>? filter = null, bool tracked=true);
     Task <List<T>>GetAll(Expression<Func<T, bool>>? filter = null);
+    PageList<T> GetAllPaginated(Params param, Expression<Func<T, bool>>? filter = null);
     Task Remove(T entity);
     Task Save();
   }

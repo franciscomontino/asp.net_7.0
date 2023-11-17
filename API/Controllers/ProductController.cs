@@ -6,6 +6,7 @@ using AutoMapper;
 using Product_API.Repository.IRepository;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using Product_API.Models.Specifications;
 
 namespace Product_API.Controllers
 {
@@ -14,7 +15,6 @@ namespace Product_API.Controllers
 
   public class ProductController : ControllerBase
   {
-    // Implementar logger
     private readonly ILogger<ProductController> _logger;
     private readonly IProductRepository _productRepository;
     private readonly IKindOfProductRepository _kindOfProductRepository;
@@ -36,6 +36,8 @@ namespace Product_API.Controllers
 
     // Get all records =============================================================
     [HttpGet]
+    // [ResponseCache(Duration = 30)]
+    [ResponseCache(CacheProfileName = "Default30")]
     [Authorize(Roles = "admin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<ApiResponse>> GetProducts()
@@ -46,6 +48,30 @@ namespace Product_API.Controllers
         IEnumerable<Product> productList = await _productRepository.GetAll();
         _response.statusCode = HttpStatusCode.OK;
         _response.Result = _mapper.Map<IEnumerable<ProductDto>>(productList);
+        return Ok(_response);
+      }
+      catch (Exception e)
+      {
+        _response.isSuccessful = false;
+        _response.ErrorMessages = new List<string>() { e.ToString() };
+      }
+      return _response;
+    }
+
+    // Get all records paginated=============================================================
+    [HttpGet("PaginatedProducts")]
+    // [ResponseCache(Duration = 30)]
+    [ResponseCache(CacheProfileName = "Default30")]
+    [Authorize(Roles = "admin")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public ActionResult<ApiResponse> GetPaginatedProducts([FromQuery] Params param)
+    {
+      try
+      {
+        var productList = _productRepository.GetAllPaginated(param);
+        _response.statusCode = HttpStatusCode.OK;
+        _response.Result = _mapper.Map<IEnumerable<ProductDto>>(productList);
+        _response.TotalPages = productList.MetaData.TotalPage;
         return Ok(_response);
       }
       catch (Exception e)

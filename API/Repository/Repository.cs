@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Product_API.Data;
+using Product_API.Models.Specifications;
 using Product_API.Repository.IRepository;
 
 namespace Product_API.Repository
@@ -35,6 +36,13 @@ namespace Product_API.Repository
       IQueryable<T> query = dbSet;
       if (filter != null) query = query.Where(filter);
       return await query.ToListAsync();
+    }
+
+    public PageList<T> GetAllPaginated(Params param, Expression<Func<T, bool>>? filter = null)
+    {
+      IQueryable<T> query = dbSet;
+      if (filter != null) query = query.Where(filter);
+      return PageList<T>.ToPagedList(query, param.PageNumber, param.PageSize);
     }
 
     public async Task Remove(T entity)
