@@ -62,7 +62,6 @@ namespace Product_API.Controllers
     [HttpGet("PaginatedProducts")]
     // [ResponseCache(Duration = 30)]
     [ResponseCache(CacheProfileName = "Default30")]
-    [Authorize(Roles = "admin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<ApiResponse> GetPaginatedProducts([FromQuery] Params param)
     {
@@ -119,6 +118,7 @@ namespace Product_API.Controllers
 
     // Create one record ==============================================================
     [HttpPost]
+    [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -163,6 +163,7 @@ namespace Product_API.Controllers
 
     // Delete record =============================================================
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -197,6 +198,7 @@ namespace Product_API.Controllers
 
     // Update record - PUT ====================================================
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -225,6 +227,7 @@ namespace Product_API.Controllers
 
     // Update record - PATCH ====================================================
     [HttpPatch("{id:int}")]
+    [Authorize(Roles = "admin", AuthenticationSchemes = "Bearer")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

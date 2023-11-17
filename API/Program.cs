@@ -1,10 +1,12 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Product_API;
 using Product_API.Data;
+using Product_API.Models;
 using Product_API.Repository;
 using Product_API.Repository.IRepository;
 
@@ -72,6 +74,8 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddResponseCaching();
 
 builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddIdentity<UserApplication, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 // Add classes implementing the repository pattern

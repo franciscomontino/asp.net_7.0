@@ -7,6 +7,6 @@ namespace Product_API.Repository.IRepository
   {
     bool IsUniqueUser(string userName);
     Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
-    Task<User> Register(RegisterRequestDto registerRequestDto);
+    Task<UserDto> Register(RegisterRequestDto registerRequestDto);
   }
 }

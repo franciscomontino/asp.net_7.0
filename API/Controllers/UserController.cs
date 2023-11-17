@@ -39,24 +39,33 @@ namespace Product_API.Controllers
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
     {
-      bool isUniqueUser = _userRepository.IsUniqueUser(model.UserName);
-      if (!isUniqueUser)
+      try
       {
-        _response.statusCode = HttpStatusCode.BadRequest;
-        _response.isSuccessful = false;
-        _response.ErrorMessages.Add("User exists");
-        return BadRequest(_response);
+        bool isUniqueUser = _userRepository.IsUniqueUser(model.UserName);
+        if (!isUniqueUser)
+        {
+          _response.statusCode = HttpStatusCode.BadRequest;
+          _response.isSuccessful = false;
+          _response.ErrorMessages.Add("User exists");
+          return BadRequest(_response);
+        }
+        var user = await _userRepository.Register(model);
+        if (user == null)
+        {
+          _response.statusCode = HttpStatusCode.BadRequest;
+          _response.isSuccessful = false;
+          _response.ErrorMessages.Add("error registering user");
+          return BadRequest(_response);
+        }
+        _response.statusCode = HttpStatusCode.OK;
+        return Ok(_response);
       }
-      var user = await _userRepository.Register(model);
-      if (user == null)
+      catch (Exception e)
       {
-        _response.statusCode = HttpStatusCode.BadRequest;
         _response.isSuccessful = false;
-        _response.ErrorMessages.Add("error registering user");
-        return BadRequest(_response);
+        _response.ErrorMessages = new List<string>() { e.ToString() };
       }
-      _response.statusCode = HttpStatusCode.OK;
-      return Ok(_response);
+      return (IActionResult)_response;
     }
   }
 }

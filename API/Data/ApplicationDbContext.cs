@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Product_API.Models;
 
 namespace Product_API.Data
 {
-  public class AppDbContext : DbContext
+  public class AppDbContext : IdentityDbContext<UserApplication>
   {
     protected readonly IConfiguration Configuration;
 
@@ -27,8 +28,11 @@ namespace Product_API.Data
     //Users
     public DbSet<User> Users { get; set; }
 
+    public DbSet<UserApplication> UsersApplication { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      base.OnModelCreating(modelBuilder);
       modelBuilder.Entity<KindOfProduct>().HasData(
         new KindOfProduct()
         {

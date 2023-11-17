@@ -2,6 +2,7 @@ using AutoMapper;
 using Product_API.Models;
 using ProductDto_API.Models.Product;
 using ProductDto_API.Models.KindOfProduct;
+using Product_API.Models.Dto;
 
 namespace Product_API
 {
@@ -18,6 +19,8 @@ namespace Product_API
       CreateMap<KindOfProduct, KindOfProductDto>().ReverseMap();
       CreateMap<KindOfProduct, KindOfProductCreateDto>().ReverseMap();
       CreateMap<KindOfProduct, KindOfProductUpdateDto>().ReverseMap();
+      //User
+      CreateMap<UserApplication, UserDto>().ReverseMap();
     }
   }
 }
